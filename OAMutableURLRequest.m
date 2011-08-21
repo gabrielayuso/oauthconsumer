@@ -43,9 +43,10 @@
 			token:(OAToken *)aToken
             realm:(NSString *)aRealm
 signatureProvider:(id<OASignatureProviding>)aProvider {
-    if ((self = [super initWithURL:aUrl
-           cachePolicy:NSURLRequestReloadIgnoringCacheData
-	   timeoutInterval:10.0])) {
+	self = [super initWithURL:aUrl
+				  cachePolicy:NSURLRequestReloadIgnoringCacheData
+			  timeoutInterval:10.0];
+    if (self) {
     
 		consumer = [aConsumer retain];
 		
