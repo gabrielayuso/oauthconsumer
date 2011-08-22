@@ -44,11 +44,11 @@
     status = SecKeychainItemCopyContent(item, NULL, &list, &length, (void **)&password);
     
     if (status == noErr) {
-		char* keyBuffer = malloc(sizeof(char)*(list.attr[0].length + 1));
+		char* keyBuffer = malloc(sizeof(char)*(list.attr[0].length+1));
 		
 		strncpy(keyBuffer, list.attr[0].data, list.attr[0].length);
-		keyBuffer[list.attr[0].length+1] = '\0';	
-
+		keyBuffer[list.attr[0].length] = '\0';
+		
         self.key = [NSString stringWithCString:keyBuffer encoding:NSUTF8StringEncoding];
 		free(keyBuffer);
 		
