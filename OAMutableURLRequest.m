@@ -134,13 +134,17 @@ signatureProvider:(id<OASignatureProviding>)aProvider
 }
 
 - (void)_generateNonce {
+#ifndef __clang_analyzer__
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+
     NSMakeCollectable(theUUID);
+
 	if (nonce) {
 		CFRelease(nonce);
 	}
     nonce = (NSString *)string;
+#endif
 }
 
 - (NSString *)_signatureBaseString {

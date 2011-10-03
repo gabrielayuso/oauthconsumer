@@ -285,6 +285,7 @@
 {
 	OAToken *token = [[OAToken alloc] initWithHTTPResponseBody:body];
 	[self setAccessToken:token];
+	[token release];
 }
 
 - (void)renewToken {
@@ -372,6 +373,7 @@
 		[delegates setObject:aDelegate forKey:[NSString stringWithFormat:@"%p", call]];
 	}
 	[self dispatch];
+	[call release];
 }
 
 - (void)fetchData:(NSString *)aURL method:(NSString *)aMethod parameters:(NSArray *)theParameters
