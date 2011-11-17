@@ -77,6 +77,26 @@
     return self;
 }
 
+- (void)deleteFromKeychainWithAppName:(NSString*)name serviceProviderName:(NSString*)provider
+{
+    SecKeychainItemRef item;
+	NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
+	OSStatus status = SecKeychainFindGenericPassword(NULL,
+													 (unsigned int)strlen([serviceName UTF8String]),
+													 [serviceName UTF8String],
+													 0,
+													 NULL,
+													 NULL,
+													 NULL,
+													 &item);
+    if (status != noErr) {
+        return;
+    }
+	
+	SecKeychainItemDelete(item);
+	NSMakeCollectable(item);
+	CFRelease(item);
+}
 
 - (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider 
 {

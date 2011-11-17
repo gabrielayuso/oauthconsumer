@@ -13,6 +13,7 @@
 @interface OAToken (OAToken_KeychainExtensions)
 
 - (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider;
+- (void)deleteFromKeychainWithAppName:(NSString*)name serviceProviderName:(NSString*)provider;
 - (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider;
 - (int)storeInKeychain:(SecKeychainRef)keychain appName:(NSString *)name serviceProviderName:(NSString *)provider;
 
