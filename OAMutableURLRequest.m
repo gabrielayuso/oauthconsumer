@@ -86,7 +86,7 @@ signatureProvider:(id<OASignatureProviding>)aProvider {
 signatureProvider:(id<OASignatureProviding>)aProvider
             nonce:(NSString *)aNonce
         timestamp:(NSString *)aTimestamp {
-    [self initWithURL:aUrl
+    self = [self initWithURL:aUrl
              consumer:aConsumer
                 token:aToken
                 realm:aRealm

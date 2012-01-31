@@ -12,7 +12,7 @@
 
 - (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider 
 {
-    [super init];
+    self = [super init];
     SecKeychainItemRef item;
 	NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
 	OSStatus status = SecKeychainFindGenericPassword(NULL,
@@ -72,8 +72,6 @@
         return nil;
     }
     
-    NSMakeCollectable(item);
-    
     return self;
 }
 
@@ -94,8 +92,6 @@
     }
 	
 	SecKeychainItemDelete(item);
-	NSMakeCollectable(item);
-	CFRelease(item);
 }
 
 - (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider 

@@ -93,7 +93,7 @@
 		[self exchangeToken];
 	} else {
 		[authorizedTokenKey release];
-		authorizedTokenKey = [aKey retain];
+		authorizedTokenKey = (NSString*)[aKey retain];
 	}
 }
 
